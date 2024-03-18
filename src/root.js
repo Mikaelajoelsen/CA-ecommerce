@@ -3,6 +3,7 @@ import CartPage from "./pages/Cartpage";
 import CheckoutPage from "./pages/Checkoutpage";
 import Home from "./pages/Home";
 import ProductPage from "./pages/Productpage";
+import Productspage from "./pages/Productspage";
 import Root from "./App";
 
 const rootRoute = new RootRoute({
@@ -33,11 +34,18 @@ const productPageRoute = new Route({
   component: ProductPage,
 });
 
+const productsPageRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: "/Productspage",
+  component: Productspage,
+});
+
 const routeTree = rootRoute.addChildren([
   cartPageRoute,
   checkoutPageRoute,
   HomeRoute,
   productPageRoute,
+  productsPageRoute,
 ]);
 
 export const router = new Router({ routeTree });
