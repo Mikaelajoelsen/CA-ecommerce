@@ -1,53 +1,65 @@
-import { Router, Route, RootRoute } from "@tanstack/react-router";
+import {
+  createRouter,
+  createRoute,
+  createRootRoute,
+} from "@tanstack/react-router";
+import HomePage from "./pages/Home";
 import CartPage from "./pages/Cartpage";
 import CheckoutPage from "./pages/Checkoutpage";
-import Home from "./pages/Home";
-import ProductPage from "./pages/Productpage";
+import Productpage from "./pages/Productpage";
 import Productspage from "./pages/Productspage";
+import ProfilePage from "./pages/Profile";
 import Root from "./App";
 
-const rootRoute = new RootRoute({
+const rootRoute = createRootRoute({
   component: Root,
 });
 
-const HomeRoute = new Route({
+const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "/Home",
-  component: Home,
+  path: "/",
+  component: HomePage,
 });
 
-const cartPageRoute = new Route({
+const cartRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "/cart",
+  path: "/cartpage",
   component: CartPage,
 });
 
-const checkoutPageRoute = new Route({
+const checkoutRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "/checkout",
+  path: "/checkoutpage",
   component: CheckoutPage,
 });
 
-const productPageRoute = new Route({
+export const productRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "/Productpage",
-  component: ProductPage,
+  path: "/productpage/$productid",
+  component: Productpage,
 });
 
-const productsPageRoute = new Route({
+const productsRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "/Productspage",
+  path: "/productspage",
   component: Productspage,
 });
 
+const profileRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/profile",
+  component: ProfilePage,
+});
+
 const routeTree = rootRoute.addChildren([
-  cartPageRoute,
-  checkoutPageRoute,
-  HomeRoute,
-  productPageRoute,
-  productsPageRoute,
+  indexRoute,
+  cartRoute,
+  checkoutRoute,
+  productRoute,
+  productsRoute,
+  profileRoute,
 ]);
 
-export const router = new Router({ routeTree });
+export const router = createRouter({ routeTree });
 
 export default router;

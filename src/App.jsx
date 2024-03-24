@@ -1,6 +1,6 @@
+import { Outlet } from "@tanstack/react-router";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Home from "./pages/Home";
 import "./App.css";
 
 function App() {
@@ -10,8 +10,9 @@ function App() {
         <Header />
       </header>
       <main>
-        <Home />
+        <Outlet />
       </main>
+
       <footer>
         <Footer />
       </footer>
