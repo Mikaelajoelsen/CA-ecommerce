@@ -33,9 +33,9 @@ const checkoutRoute = createRoute({
   component: CheckoutPage,
 });
 
-export const productRoute = createRoute({
+const productRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "/productpage/$productid",
+  path: "/product/$productId",
   component: Productpage,
 });
 

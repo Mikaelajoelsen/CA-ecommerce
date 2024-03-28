@@ -1,76 +1,158 @@
 import { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import { Link } from "@tanstack/react-router";
+import { IoMdSearch } from "react-icons/io";
+import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 
-function ProductCard({ product }) {
-  return (
-    <div className="w-64 mx-auto mb-8">
-      <div className="overflow-hidden bg-white rounded-lg shadow-md">
-        <img
-          src={product.imageUrl}
-          alt={product.title}
-          className="object-cover w-full h-40"
-        />
-        <div className="p-4">
-          <h2 className="mb-2 text-xl font-semibold">{product.title}</h2>
-          <p className="mb-2 text-gray-700">{product.description}</p>
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-gray-700">Price: ${product.price}</span>
-            <span className="text-gray-700 line-through">
-              Discounted Price: ${product.discountedPrice}
-            </span>
-          </div>
-          <div className="flex items-center justify-between">
-            <span className="text-gray-700">Rating: {product.rating}</span>
-            <span className="text-gray-700">
-              Tags: {product.tags.join(", ")}
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-ProductCard.propTypes = {
-  product: PropTypes.shape({
-    imageUrl: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    discountedPrice: PropTypes.number.isRequired,
-    rating: PropTypes.number.isRequired,
-    tags: PropTypes.arrayOf(PropTypes.string).isRequired,
-    id: PropTypes.string.isRequired,
-  }).isRequired,
+const getRandomImage = async () => {
+  try {
+    const response = await fetch("https://source.unsplash.com/random/800x600");
+    return response.url;
+  } catch (error) {
+    console.warn("getRandomImage, error", error);
+    return "";
+  }
 };
 
-function Productspage() {
+const ProductsPage = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 12;
 
   useEffect(() => {
-    fetch("https://api.noroff.dev/api/v1/online-shop")
-      .then((response) => response.json())
-      .then((data) => setProducts(data))
-      .catch((error) => console.error("Error fetching data: ", error));
+    const fetchProducts = async () => {
+      setIsLoading(true);
+
+      try {
+        const response = await fetch(
+          "https://api.noroff.dev/api/v1/online-shop"
+        );
+        const data = await response.json();
+
+        const updatedProducts = await Promise.all(
+          data.map(async (product) => ({
+            ...product,
+            imageUrl: product?.imageUrl
+              ? product.imageUrl
+              : await getRandomImage(),
+          }))
+        );
+
+        setProducts(updatedProducts);
+        setFilteredProducts(updatedProducts);
+
+        setIsLoading(false);
+      } catch (error) {
+        console.warn("fetchProducts, error", error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchProducts();
   }, []);
 
+  const handleSearchChange = (event) => {
+    const searchTerm = event.target.value.toLowerCase();
+    setSearchTerm(searchTerm);
+
+    const filtered = products.filter((product) =>
+      product.title.toLowerCase().includes(searchTerm)
+    );
+
+    setFilteredProducts(filtered);
+  };
+
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = filteredProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <div className="container mx-auto">
-      <h1 className="mb-8 text-3xl font-bold">Products</h1>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {products.map((product) => (
-          <Link
+    <section className="mt-10 bg-white">
+      <h1 className="flex justify-start mb-4 ml-5 text-4xl font-thin text-black">
+        SEARCH YOUR FAVOURITE PRODUCTS
+      </h1>
+      <div className="flex justify-start mb-4 ml-2">
+        <input
+          type="text"
+          placeholder="Search product..."
+          className="flex w-2/3 p-2 border border-gray-600 rounded-full bg-inherit"
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
+        <button
+          className="flex text-xl font-bold text-black pointer-events-none bg-inherit"
+          onClick={() => console.log("Performing search for:", searchTerm)}
+        >
+          <IoMdSearch />
+        </button>
+      </div>
+      <div className="grid grid-cols-1 gap-4 p-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4">
+        {currentProducts.map((product) => (
+          <div
             key={product.id}
-            to={`/product/${product.id}`}
-            className="block"
+            className="w-full max-w-xs overflow-hidden bg-white shadow-lg rounded-t-xl hover:bg-gray-100"
           >
-            <ProductCard product={{ ...product, id: product.id }} />{" "}
-          </Link>
+            <Link className="item-link" to={`/product/${product.id}`}>
+              <div className="relative" style={{ paddingBottom: "100%" }}>
+                {product.imageUrl && (
+                  <img
+                    src={product.imageUrl}
+                    alt={product.title}
+                    className="absolute object-cover w-full h-full"
+                    loading="lazy"
+                    onError={async (e) => {
+                      e.target.src = await getRandomImage();
+                    }}
+                  />
+                )}
+              </div>
+              <div className="px-6 py-4 text-black">
+                <h2 className="mb-2 text-xl font-bold">{product.title}</h2>
+                <p className="text-base text-gray-700">{product.description}</p>
+                <p className="text-base text-gray-700">
+                  Price: ${product.price}
+                </p>
+                <p className="text-base text-gray-700">
+                  Discounted Price: ${product.discountedPrice}
+                </p>
+              </div>
+            </Link>
+          </div>
         ))}
       </div>
-    </div>
+      <div className="flex justify-center mt-4 mb-12">
+        {filteredProducts.length > productsPerPage && (
+          <div className="flex space-x-2">
+            <button
+              className="px-3 py-2 text-4xl font-thin text-pink-200 bg-inherit"
+              onClick={() => paginate(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              {<FaArrowAltCircleLeft />}
+            </button>
+            <button
+              className="px-3 py-2 text-4xl font-thin text-pink-200 bg-inherit"
+              onClick={() => paginate(currentPage + 1)}
+              disabled={indexOfLastProduct >= filteredProducts.length}
+            >
+              {<FaArrowAltCircleRight />}
+            </button>
+          </div>
+        )}
+      </div>
+    </section>
   );
-}
+};
 
-export default Productspage;
+export default ProductsPage;
