@@ -9,14 +9,13 @@ const initialProductState = {
   tags: [],
 };
 
-const ProductPage = () => {
+const Productpage = () => {
   const [product, setProduct] = useState(initialProductState);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        // Extract productId from the URL path
         const pathSegments = window.location.pathname.split("/");
         const productId = pathSegments[pathSegments.length - 1];
         const response = await fetch(
@@ -44,32 +43,31 @@ const ProductPage = () => {
   }
 
   return (
-    <>
-      <div className="container mx-auto mt-12">
-        <h1 className="mb-4 text-2xl font-bold">{product.title}</h1>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          <div>
-            <img
-              src={product.imageUrl}
-              alt={product.title}
-              className="w-full h-auto"
-            />
-          </div>
-          <div>
-            <p className="mb-2 text-gray-700">{product.description}</p>
-            <p className="mb-2 text-gray-700">Price: ${product.price}</p>
-            <p className="mb-2 text-gray-700">
-              Discounted Price: ${product.discountedPrice}
-            </p>
-            <p className="mb-2 text-gray-700">Rating: {product.rating}</p>
-            <p className="mb-2 text-gray-700">
-              Tags: {product.tags.join(", ")}
-            </p>
-          </div>
+    <div className="container mx-auto mt-24">
+      <h1 className="mb-4 text-2xl font-bold">{product.title}</h1>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div>
+          <img
+            src={product.imageUrl}
+            alt={product.title}
+            className="w-full h-auto"
+          />
+        </div>
+        <div>
+          <p className="mb-2 text-gray-700">{product.description}</p>
+          <p className="mb-2 text-gray-700">Price: ${product.price}</p>
+          <p className="mb-2 text-gray-700">
+            Discounted Price: ${product.discountedPrice}
+          </p>
+          <p className="mb-2 text-gray-700">Rating: {product.rating}</p>
+          <p className="mb-2 text-gray-700">Tags: {product.tags.join(", ")}</p>
+          <button className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
+            Add to Cart
+          </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
-export default ProductPage;
+export default Productpage;

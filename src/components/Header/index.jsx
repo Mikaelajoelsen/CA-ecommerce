@@ -38,12 +38,9 @@ const navigation = {
             { name: "Tops", href: "#" },
             { name: "Dresses", href: "#" },
             { name: "Pants", href: "#" },
-            { name: "Denim", href: "#" },
             { name: "Sweaters", href: "#" },
             { name: "T-Shirts", href: "#" },
             { name: "Jackets", href: "#" },
-            { name: "Activewear", href: "#" },
-            { name: "Browse All", href: "#" },
           ],
         },
         {
@@ -53,20 +50,6 @@ const navigation = {
             { name: "Watches", href: "#" },
             { name: "Wallets", href: "#" },
             { name: "Bags", href: "#" },
-            { name: "Sunglasses", href: "#" },
-            { name: "Hats", href: "#" },
-            { name: "Belts", href: "#" },
-          ],
-        },
-        {
-          id: "brands",
-          name: "Brands",
-          items: [
-            { name: "Full Nelson", href: "#" },
-            { name: "My Way", href: "#" },
-            { name: "Re-Arranged", href: "#" },
-            { name: "Counterfeit", href: "#" },
-            { name: "Significant Other", href: "#" },
           ],
         },
       ],
@@ -113,9 +96,6 @@ const navigation = {
             { name: "Watches", href: "#" },
             { name: "Wallets", href: "#" },
             { name: "Bags", href: "#" },
-            { name: "Sunglasses", href: "#" },
-            { name: "Hats", href: "#" },
-            { name: "Belts", href: "#" },
           ],
         },
         {
@@ -124,8 +104,6 @@ const navigation = {
           items: [
             { name: "Re-Arranged", href: "#" },
             { name: "Counterfeit", href: "#" },
-            { name: "Full Nelson", href: "#" },
-            { name: "My Way", href: "#" },
           ],
         },
       ],
@@ -145,7 +123,7 @@ export default function Example() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="bg-white">
+    <div className="fixed top-0 z-30 w-full bg-white">
       {/* Moble menu */}
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
@@ -322,8 +300,8 @@ export default function Example() {
         </Dialog>
       </Transition.Root>
 
-      <header className="relative bg-white">
-        <p className="flex items-center justify-center h-10 px-4 text-sm font-medium text-black bg-black-600 sm:px-6 lg:px-8">
+      <header className="relative">
+        <p className="flex items-center justify-center h-10 px-4 text-sm font-medium text-black bg-pink-200 bg-black-600 sm:px-6 lg:px-8">
           Get free delivery on orders over $100
         </p>
 
@@ -346,11 +324,6 @@ export default function Example() {
               <div className="flex ml-4 lg:ml-0">
                 <a href="#">
                   <span className="sr-only">Your Company</span>
-                  <img
-                    className="w-auto h-8"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                    alt=""
-                  />
                 </a>
               </div>
 
