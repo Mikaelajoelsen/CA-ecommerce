@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
 import { IoMdSearch } from "react-icons/io";
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
+import Carousel from "../components/Carousel";
 
 const getRandomImage = async () => {
   try {
@@ -78,7 +79,8 @@ const ProductsPage = () => {
   }
 
   return (
-    <section className="mt-20 bg-white">
+    <section className="bg-white">
+      <Carousel />
       <h1 className="flex justify-start mb-4 ml-5 text-4xl font-thin text-black">
         SEARCH YOUR FAVOURITE PRODUCTS
       </h1>

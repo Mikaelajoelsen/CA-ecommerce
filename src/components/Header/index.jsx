@@ -1,3 +1,4 @@
+// CartItems.js
 import { Fragment, useState } from "react";
 import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
 import {
@@ -10,109 +11,105 @@ import {
 const navigation = {
   categories: [
     {
-      id: "women",
-      name: "Women",
+      id: "CLOTHING",
+      name: "VIEW PRODUCTS",
+      href: "/productspage",
       featured: [
         {
-          name: "New Arrivals",
-          href: "#",
+          name: "MAKEUP",
+          href: "/productspage",
           imageSrc:
-            "https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg",
+            "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=3024&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
           imageAlt:
             "Models sitting back to back, wearing Basic Tee in black and bone.",
         },
         {
-          name: "Basic Tees",
-          href: "#",
+          name: "PERFUME",
+          href: "/productspage",
           imageSrc:
-            "https://tailwindui.com/img/ecommerce-images/mega-menu-category-02.jpg",
+            "https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=3104&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
           imageAlt:
             "Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.",
         },
       ],
       sections: [
         {
-          id: "clothing",
-          name: "Clothing",
+          id: "MAKEUP",
+          name: "MAKEUP",
           items: [
-            { name: "Tops", href: "#" },
-            { name: "Dresses", href: "#" },
-            { name: "Pants", href: "#" },
-            { name: "Sweaters", href: "#" },
-            { name: "T-Shirts", href: "#" },
-            { name: "Jackets", href: "#" },
+            { name: "PERFUME", href: "/productspage" },
+            { name: "EYEMAKEUP", href: "/productspage" },
+            { name: "FOUNDATION", href: "/productspage" },
+            { name: "BLUSH", href: "/productspage" },
+            { name: "BRONZER", href: "/productspage" },
           ],
         },
         {
-          id: "accessories",
-          name: "Accessories",
+          id: "ACCESSORIES",
+          name: "ACCESSORIES",
           items: [
-            { name: "Watches", href: "#" },
-            { name: "Wallets", href: "#" },
-            { name: "Bags", href: "#" },
+            { name: "WATCHES", href: "/productspage" },
+            { name: "WALLETS", href: "/productspage" },
+            { name: "BAGS", href: "/productspage" },
           ],
         },
       ],
     },
     {
-      id: "men",
-      name: "Men",
+      id: "ELECTRONICS",
+      name: "ELECTRONICS",
       featured: [
         {
-          name: "New Arrivals",
+          name: "NEW ARRIVALS",
           href: "/productspage",
           imageSrc:
-            "https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg",
+            "https://images.unsplash.com/photo-1527443195645-1133f7f28990?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
           imageAlt:
             "Drawstring top with elastic loop closure and textured interior padding.",
         },
         {
-          name: "Artwork Tees",
+          name: "Headphones",
           href: "/productspage",
           imageSrc:
-            "https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-06.jpg",
+            "https://images.unsplash.com/photo-1613040809024-b4ef7ba99bc3?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
           imageAlt:
             "Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.",
         },
       ],
       sections: [
         {
-          id: "clothing",
-          name: "Clothing",
+          id: "Electronics",
+          name: "Electronics",
           items: [
-            { name: "Tops", href: "#" },
-            { name: "Pants", href: "#" },
-            { name: "Sweaters", href: "#" },
-            { name: "T-Shirts", href: "#" },
-            { name: "Jackets", href: "#" },
-            { name: "Activewear", href: "#" },
-            { name: "Browse All", href: "#" },
+            { name: "PHONES", href: "/productspage" },
+            { name: "TABLETS", href: "/productspage" },
+            { name: "ACCESSORIES", href: "/productspage" },
+            { name: "COMPUTERS", href: "/productspage" },
+            { name: "GAMES", href: "/productspage" },
+            { name: "HEADPHONES", href: "/productspage" },
           ],
         },
         {
-          id: "accessories",
-          name: "Accessories",
+          id: "ACCESSORIES",
+          name: "ACCESSORIES",
           items: [
-            { name: "Watches", href: "#" },
-            { name: "Wallets", href: "#" },
-            { name: "Bags", href: "#" },
+            { name: "COMPUTER ACCESSORIES", href: "/productspage" },
+            { name: "PHONE ACCESSORIES", href: "/productspage" },
+            { name: "TABLET ACCESSORIES", href: "/productspage" },
           ],
         },
         {
-          id: "brands",
-          name: "Brands",
+          id: "BRANDS",
+          name: "BRANDS",
           items: [
-            { name: "Re-Arranged", href: "#" },
-            { name: "Counterfeit", href: "#" },
+            { name: "APPLE", href: "/productspage" },
+            { name: "SAMSUNG", href: "/productspage" },
           ],
         },
       ],
     },
   ],
-  pages: [
-    { name: "Our Products", href: "/productspage" },
-    { name: "Cart", href: "/cartpage" },
-  ],
+  pages: [],
 };
 
 function classNames(...classes) {
@@ -123,7 +120,7 @@ export default function Example() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="relative top-0 z-30 w-full bg-white">
+    <div className="relative top-0 z-30 w-full bg-gray-100">
       {/* Moble menu */}
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
@@ -136,10 +133,10 @@ export default function Example() {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 text-black bg-black bg-opacity-25" />
+            <div className="fixed inset-0 text-black bg-white bg-opacity-25" />
           </Transition.Child>
 
-          <div className="fixed inset-0 z-40 flex ">
+          <div className="fixed inset-0 z-40 flex">
             <Transition.Child
               as={Fragment}
               enter="transition ease-in-out duration-300 transform"
@@ -153,7 +150,7 @@ export default function Example() {
                 <div className="flex px-4 pt-5 pb-2">
                   <button
                     type="button"
-                    className="relative inline-flex items-center justify-center p-2 -m-2 text-black rounded-md"
+                    className="relative inline-flex items-center justify-center p-2 -m-2 text-black"
                     onClick={() => setOpen(false)}
                   >
                     <span className="absolute -inset-0.5" />
@@ -301,7 +298,7 @@ export default function Example() {
       </Transition.Root>
 
       <header className="relative">
-        <p className="flex items-center justify-center h-10 px-4 text-sm font-medium text-black bg-pink-200 bg-black-600 sm:px-6 lg:px-8">
+        <p className="flex items-center justify-center h-10 px-4 text-sm font-medium text-white bg-black bg-black-600 sm:px-6 lg:px-8">
           Get free delivery on orders over $100
         </p>
 
@@ -309,11 +306,11 @@ export default function Example() {
           aria-label="Top"
           className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8"
         >
-          <div className="border-b border-gray-200">
+          <div className="border-b border-gray-200 ">
             <div className="flex items-center h-16">
               <button
                 type="button"
-                className="relative p-2 text-black bg-white rounded-md lg:hidden"
+                className="relative p-2 text-white bg-black rounded-md lg:hidden"
                 onClick={() => setOpen(true)}
               >
                 <span className="absolute -inset-0.5" />
@@ -337,7 +334,7 @@ export default function Example() {
                             <Popover.Button
                               className={classNames(
                                 open
-                                  ? "border-black text-black-600"
+                                  ? "border-none text-black"
                                   : "border-transparent text-black",
                                 "relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out"
                               )}
@@ -355,9 +352,9 @@ export default function Example() {
                             leaveFrom="opacity-100"
                             leaveTo="opacity-0"
                           >
-                            <Popover.Panel className="absolute inset-x-0 text-sm text-black top-full">
+                            <Popover.Panel className="absolute inset-x-0 text-sm text-white top-full">
                               <div
-                                className="absolute inset-0 bg-white shadow top-1/2"
+                                className="absolute inset-0 bg-black shadow top-1/2"
                                 aria-hidden="true"
                               />
 
