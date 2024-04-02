@@ -123,7 +123,7 @@ export default function Example() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="fixed top-0 z-30 w-full bg-white">
+    <div className="relative top-0 z-30 w-full bg-white">
       {/* Moble menu */}
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>

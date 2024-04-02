@@ -78,7 +78,7 @@ const ProductsPage = () => {
   }
 
   return (
-    <section className="mt-48 bg-white">
+    <section className="mt-20 bg-white">
       <h1 className="flex justify-start mb-4 ml-5 text-4xl font-thin text-black">
         SEARCH YOUR FAVOURITE PRODUCTS
       </h1>
