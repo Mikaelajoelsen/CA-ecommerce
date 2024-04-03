@@ -16,6 +16,7 @@
     "@tanstack/react-router": "^1.21.0",
     "@tanstack/router": "^0.0.1-beta.53",
     "mdb-react-ui-kit": "^7.2.0",
+    "zustand": "^4.5.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",

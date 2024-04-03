@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { MdStar } from "react-icons/md";
 import { HiOutlineArrowCircleRight } from "react-icons/hi";
-
+import { useCartStore } from "../hooks/useCartStore";
 const initialProductState = {
   title: "No product found",
   description: "No description available",
@@ -14,6 +14,7 @@ const initialProductState = {
 const Productpage = () => {
   const [product, setProduct] = useState(initialProductState);
   const [loading, setLoading] = useState(true);
+  const addItemToCart = useCartStore((state) => state.addItem);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -94,7 +95,7 @@ const Productpage = () => {
                     <button
                       className="flex items-center justify-center w-full gap-2 px-4 py-3 font-bold text-white duration-150 ease-in-out bg-gray-900 border border-gray-500 rounded-md text-md shadow-slate-600 hover:bg-white hover:text-gray-900 lg:m-0 md:px-6"
                       title="Confirm Order"
-                      onClick={handleAddToCart}
+                      onClick={() => addItemToCart(product)}
                     >
                       <span>Add to cart</span>
                       <HiOutlineArrowCircleRight />

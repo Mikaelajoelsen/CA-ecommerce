@@ -7,6 +7,7 @@ import {
   ShoppingBagIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import { useCartStore } from "../../hooks/useCartStore";
 
 const navigation = {
   categories: [
@@ -119,6 +120,10 @@ function classNames(...classes) {
 export default function Example() {
   const [open, setOpen] = useState(false);
 
+  const { count, toggleIsOpen } = useCartStore((state) => ({
+    count: state.count,
+    toggleIsOpen: state.toggleIsOpen,
+  }))
   return (
     <div className="relative top-0 z-30 w-full bg-gray-100">
       {/* Moble menu */}
@@ -490,14 +495,14 @@ export default function Example() {
                 </div>
 
                 {/* Cart */}
-                <div className="flow-root ml-4 lg:ml-6">
+                <div className="flow-root ml-4 lg:ml-6" onClick={toggleIsOpen}>
                   <a href="#" className="flex items-center p-2 -m-2 group">
                     <ShoppingBagIcon
                       className="flex-shrink-0 w-6 h-6 text-black group-hover:text-gray-900"
                       aria-hidden="true"
                     />
                     <span className="ml-2 text-sm font-medium text-black group-hover:text-black">
-                      0
+                      {count}
                     </span>
                     <span className="sr-only">items in cart, view bag</span>
                   </a>

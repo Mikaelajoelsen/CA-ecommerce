@@ -4,6 +4,7 @@ import { IoMdSearch } from "react-icons/io";
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 import Carousel from "../components/Carousel";
 
+
 const getRandomImage = async () => {
   try {
     const response = await fetch("https://source.unsplash.com/random/800x600");
