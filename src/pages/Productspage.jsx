@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
 import { IoMdSearch } from "react-icons/io";
+import { HiOutlineArrowCircleRight } from "react-icons/hi";
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 import Carousel from "../components/Carousel";
-
+import { useCartStore } from "../hooks/useCartStore";
 
 const getRandomImage = async () => {
   try {
@@ -21,6 +22,7 @@ const ProductsPage = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const addItemToCart = useCartStore((state) => state.addItem);
   const productsPerPage = 12;
 
   useEffect(() => {
@@ -106,31 +108,39 @@ const ProductsPage = () => {
             key={product.id}
             className="w-full max-w-xs overflow-hidden bg-white shadow-lg rounded-t-xl hover:bg-gray-100"
           >
-            <Link className="item-link" to={`/product/${product.id}`}>
-              <div className="relative" style={{ paddingBottom: "100%" }}>
-                {product.imageUrl && (
-                  <img
-                    src={product.imageUrl}
-                    alt={product.title}
-                    className="absolute object-cover w-full h-full"
-                    loading="lazy"
-                    onError={async (e) => {
-                      e.target.src = await getRandomImage();
-                    }}
-                  />
-                )}
+            <div className="relative" style={{ paddingBottom: "100%" }}>
+              {product.imageUrl && (
+                <img
+                  src={product.imageUrl}
+                  alt={product.title}
+                  className="absolute object-cover w-full h-full"
+                  loading="lazy"
+                  onError={async (e) => {
+                    e.target.src = await getRandomImage();
+                  }}
+                />
+              )}
+            </div>
+            <div className="px-6 py-4 text-black">
+              <Link className="item-link" text-xl to={`/product/${product.id}`}>
+                {product.title}
+              </Link>
+              <p className="text-base text-gray-700">{product.description}</p>
+              <p className="text-base text-gray-700">Price: ${product.price}</p>
+              <p className="text-base text-gray-700">
+                Discounted Price: ${product.discountedPrice}
+              </p>
+              <div className="w-full my-4 text-left">
+                <button
+                  className="flex items-center justify-center w-full gap-2 px-4 py-3 font-bold text-white duration-150 ease-in-out bg-gray-900 border border-gray-500 rounded-md text-md shadow-slate-600 hover:bg-white hover:text-gray-900 lg:m-0 md:px-6"
+                  title="Confirm Order"
+                  onClick={() => addItemToCart(product)}
+                >
+                  <span>Add to cart</span>
+                  <HiOutlineArrowCircleRight />
+                </button>
               </div>
-              <div className="px-6 py-4 text-black">
-                <h2 className="mb-2 text-xl font-bold">{product.title}</h2>
-                <p className="text-base text-gray-700">{product.description}</p>
-                <p className="text-base text-gray-700">
-                  Price: ${product.price}
-                </p>
-                <p className="text-base text-gray-700">
-                  Discounted Price: ${product.discountedPrice}
-                </p>
-              </div>
-            </Link>
+            </div>
           </div>
         ))}
       </div>
@@ -138,14 +148,14 @@ const ProductsPage = () => {
         {filteredProducts.length > productsPerPage && (
           <div className="flex space-x-2">
             <button
-              className="px-3 py-2 text-4xl font-thin text-pink-200 bg-inherit"
+              className="px-3 py-2 text-4xl font-thin text-black bg-inherit"
               onClick={() => paginate(currentPage - 1)}
               disabled={currentPage === 1}
             >
               {<FaArrowAltCircleLeft />}
             </button>
             <button
-              className="px-3 py-2 text-4xl font-thin text-pink-200 bg-inherit"
+              className="px-3 py-2 text-4xl font-thin text-black bg-inherit"
               onClick={() => paginate(currentPage + 1)}
               disabled={indexOfLastProduct >= filteredProducts.length}
             >

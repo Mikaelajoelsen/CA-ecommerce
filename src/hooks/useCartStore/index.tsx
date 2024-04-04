@@ -35,12 +35,9 @@ export const useCartStore = create<State & Action>((set) => ({
 
       const product = state.items.find((stateItem) => stateItem.id === item.id);
 
-      // If the product is already in the cart we want to increase the quantity
       if (product) {
         product.quantity = product.quantity + 1;
-        // Create a new array but insert the modified product
         newItems = state.items.map((i) => (i.id === product.id ? product : i));
-        // Else we want to add the product to the cart array
       } else {
         newItems = [...state.items, { ...item, quantity: 1 }];
       }
@@ -58,9 +55,8 @@ export const useCartStore = create<State & Action>((set) => ({
       let newItems: ProductWithQuantity[] = [];
 
       if (item.quantity > 1) {
-        // We decrease the quantity if the product is already in the cart
+       
         item.quantity = item.quantity - 1;
-        // We create a new cart so we don't mutate our state but we use the map to edit the item in the array
         newItems = state.items.map((i) => (i.id === item.id ? item : i));
       } else {
         newItems = state.items.filter((i) => i !== item);

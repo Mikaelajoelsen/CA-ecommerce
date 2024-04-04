@@ -41,12 +41,6 @@ const Productpage = () => {
     fetchProduct();
   }, []);
 
-  const handleAddToCart = () => {
-    // Here you can add the product to the cart
-    // You can implement this functionality according to your application logic
-    console.log("Product added to cart:", product);
-  };
-
   if (loading) {
     return <div>Loading...</div>;
   }
