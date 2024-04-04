@@ -1,4 +1,3 @@
-// CartItems.js
 import { Fragment, useState } from "react";
 import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
 import {
@@ -8,6 +7,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { useCartStore } from "../../hooks/useCartStore";
+import { Link } from "@tanstack/react-router";
 
 const navigation = {
   categories: [
@@ -123,12 +123,12 @@ export default function Example() {
   const { count, toggleIsOpen } = useCartStore((state) => ({
     count: state.count,
     toggleIsOpen: state.toggleIsOpen,
-  }))
+  }));
   return (
-    <div className="relative top-0 z-30 w-full bg-gray-100">
+    <div className="relative top-0 z-30 w-full bg-gray-100 ">
       {/* Moble menu */}
       <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
+        <Dialog as="div" className="z-40 lg:hidden" onClose={setOpen}>
           <Transition.Child
             as={Fragment}
             enter="transition-opacity ease-linear duration-300"
@@ -267,19 +267,19 @@ export default function Example() {
                 <div className="px-4 py-6 space-y-6 border-t border-gray-200">
                   <div className="flow-root">
                     <a
-                      href="#"
+                      href="/profile"
                       className="block p-2 -m-2 font-medium text-black"
                     >
                       Sign in
                     </a>
                   </div>
                   <div className="flow-root">
-                    <a
-                      href="#"
+                    <Link
+                      to="/profile"
                       className="block p-2 -m-2 font-medium text-black"
                     >
                       Create account
-                    </a>
+                    </Link>
                   </div>
                 </div>
 
@@ -454,17 +454,10 @@ export default function Example() {
               <div className="flex items-center ml-auto">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                   <a
-                    href="#"
+                    href="/profile"
                     className="text-sm font-medium text-black hover:text-gray-800"
                   >
-                    Sign in
-                  </a>
-                  <span className="w-px h-6 bg-gray-200" aria-hidden="true" />
-                  <a
-                    href="#"
-                    className="text-sm font-medium text-black hover:text-gray-800"
-                  >
-                    Create account
+                    Contact Page
                   </a>
                 </div>
 

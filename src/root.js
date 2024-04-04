@@ -4,11 +4,10 @@ import {
   createRootRoute,
 } from "@tanstack/react-router";
 import HomePage from "./pages/Home";
-import CartPage from "./pages/Cartpage";
 import CheckoutPage from "./pages/Checkoutpage";
 import Productpage from "./pages/Productpage";
 import Productspage from "./pages/Productspage";
-import ProfilePage from "./pages/Profile";
+import Profilepage from "./pages/Profile";
 import Root from "./App";
 
 const rootRoute = createRootRoute({
@@ -19,12 +18,6 @@ const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/",
   component: HomePage,
-});
-
-const cartRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/cartpage",
-  component: CartPage,
 });
 
 const checkoutRoute = createRoute({
@@ -48,12 +41,11 @@ const productsRoute = createRoute({
 const profileRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/profile",
-  component: ProfilePage,
+  component: Profilepage,
 });
 
 const routeTree = rootRoute.addChildren([
   indexRoute,
-  cartRoute,
   checkoutRoute,
   productRoute,
   productsRoute,
