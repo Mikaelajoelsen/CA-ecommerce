@@ -84,14 +84,11 @@ const ProductsPage = () => {
   return (
     <section className="bg-white">
       <Carousel />
-      <h1 className="flex justify-start mb-4 ml-5 text-4xl font-thin text-black">
-        SEARCH YOUR FAVOURITE PRODUCTS
-      </h1>
-      <div className="flex justify-start mb-4 ml-2">
+      <div className="flex justify-start mt-10 mb-4 ml-2">
         <input
           type="text"
-          placeholder="Search product..."
-          className="flex w-2/3 p-2 border border-gray-600 rounded-full bg-inherit"
+          placeholder="Search product, name, brand."
+          className="flex w-2/4 p-2 border border-gray-600 bg-inherit"
           value={searchTerm}
           onChange={handleSearchChange}
         />
