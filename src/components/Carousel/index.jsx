@@ -20,7 +20,7 @@ const ImageSlider = () => {
 
   return (
     <div className="relative w-full h-screen justify-center-center">
-      <h1 className="absolute left-0 z-10 w-full text-6xl font-bold text-center text-white top-92">
+      <h1 className="absolute left-0 z-10 w-full text-6xl font-bold text-center text-white top-96">
         Weekend Offer 40% Off!
       </h1>
       <h2 className="absolute left-0 z-10 w-full text-3xl font-bold text-center text-white underline top-3/4 -underline-offset-4">
