@@ -7,18 +7,21 @@ import Cart from "./components/Cart";
 
 function App() {
   return (
-    <><>
-      <header>
-        <Header />
-      </header>
-      <main>
-        <Outlet />
-      </main>
+    <>
+      <>
+        <header>
+          <Header />
+        </header>
+        <main>
+          <Outlet />
+        </main>
 
-      <footer>
-        <Footer />
-      </footer>
-    </><Cart /></>
+        <footer>
+          <Footer />
+        </footer>
+      </>
+      <Cart />
+    </>
   );
 }
 

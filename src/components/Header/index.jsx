@@ -2,12 +2,10 @@ import { Fragment, useState } from "react";
 import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
-  MagnifyingGlassIcon,
   ShoppingBagIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { useCartStore } from "../../hooks/useCartStore";
-import { Link } from "@tanstack/react-router";
 
 const navigation = {
   categories: [
@@ -125,7 +123,7 @@ export default function Example() {
     toggleIsOpen: state.toggleIsOpen,
   }));
   return (
-    <div className="relative top-0 z-30 w-full bg-gray-100 ">
+    <div className="relative top-0 z-30 w-full bg-white ">
       {/* Moble menu */}
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="z-40 lg:hidden" onClose={setOpen}>
@@ -151,11 +149,11 @@ export default function Example() {
               leaveFrom="translate-x-0"
               leaveTo="-translate-x-full"
             >
-              <Dialog.Panel className="relative flex flex-col w-full max-w-xs pb-12 overflow-y-auto text-black bg-white shadow-xl">
+              <Dialog.Panel className="relative flex flex-col w-full max-w-xs pb-12 overflow-y-auto text-black bg-white border-none">
                 <div className="flex px-4 pt-5 pb-2">
                   <button
                     type="button"
-                    className="relative inline-flex items-center justify-center p-2 -m-2 text-black"
+                    className="relative inline-flex items-center justify-center p-2 -m-2 text-black "
                     onClick={() => setOpen(false)}
                   >
                     <span className="absolute -inset-0.5" />
@@ -175,7 +173,7 @@ export default function Example() {
                             classNames(
                               selected
                                 ? "border-black text-black"
-                                : "border-transparent text-black",
+                                : "border-transparent text-black bg-white",
                               "flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium"
                             )
                           }
@@ -251,7 +249,7 @@ export default function Example() {
                   </Tab.Panels>
                 </Tab.Group>
 
-                <div className="px-4 py-6 space-y-6 border-t border-gray-200">
+                <div className="px-4 py-6 space-y-6 border-t border-gray-100">
                   {navigation.pages.map((page) => (
                     <div key={page.name} className="flow-root">
                       <a
@@ -264,7 +262,7 @@ export default function Example() {
                   ))}
                 </div>
 
-                <div className="px-4 py-6 space-y-6 border-t border-gray-200">
+                <div className="px-4 py-6 space-y-6">
                   <div className="flow-root">
                     <a
                       href="/profile"
@@ -272,14 +270,6 @@ export default function Example() {
                     >
                       Sign in
                     </a>
-                  </div>
-                  <div className="flow-root">
-                    <Link
-                      to="/profile"
-                      className="block p-2 -m-2 font-medium text-black"
-                    >
-                      Create account
-                    </Link>
                   </div>
                 </div>
 
@@ -315,7 +305,7 @@ export default function Example() {
             <div className="flex items-center h-16">
               <button
                 type="button"
-                className="relative p-2 text-white bg-black rounded-md lg:hidden"
+                className="relative p-2 text-black bg-white rounded-md lg:hidden"
                 onClick={() => setOpen(true)}
               >
                 <span className="absolute -inset-0.5" />
@@ -323,14 +313,8 @@ export default function Example() {
                 <Bars3Icon className="w-6 h-6" aria-hidden="true" />
               </button>
 
-              <div className="flex ml-4 lg:ml-0">
-                <a href="#">
-                  <span className="sr-only">Your Company</span>
-                </a>
-              </div>
-
               <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch">
-                <div className="flex h-full space-x-8">
+                <div className="flex mt-2 space-x-4 h-3/4">
                   {navigation.categories.map((category) => (
                     <Popover key={category.name} className="flex">
                       {({ open }) => (
@@ -341,7 +325,7 @@ export default function Example() {
                                 open
                                   ? "border-none text-black"
                                   : "border-transparent text-black",
-                                "relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out"
+                                " bg-white relative z-10 -mb-px flex items-center  pt-px text-sm font-medium transition-colors duration-200 ease-out"
                               )}
                             >
                               {category.name}
@@ -467,23 +451,12 @@ export default function Example() {
                     className="flex items-center text-black hover:text-black"
                   >
                     <img
-                      src="https://tailwindui.com/img/flags/flag-canada.svg"
+                      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAP8AAACGCAMAAAAl+6zxAAAAb1BMVEWzGUL///8KMWHoucXip7a5KlDFTm7Wg5nz3OLQwc5cdpZ1i6YaP2xsg6AWO2k7WoEPNWRHZYmVpruFmLC+yNWls8Xf5OuNn7VZc5QyU3vJ0tzp7PGdrcArTHYgRG/Y3uazv85QbI719/m5xNLEztm5UMKjAAADbUlEQVR4nO2dbW+iQBSFndmX7vIOKlSRKtb//xsXGESguZvd5MBlMvdJMM35dB6h7XCn2J1ehd1mEX/xb0nnlaEBtyVNXzDJk2l1bMBtSdP1DIJ39R4EQ314wG1J01XNVMsxGrqjA25LGlPWa5p640sXHHBb0ph+qbqryU8vcMBtSWP6ZVmyz8bdwQG3JY3pd+oPrYNggUB/2ypf1j9huECg1Vb54v/5uUBgi793zZXKrx40sMhfx233GBxY5K9vSt3ggT3+URl6ZQQOrPDvf2VVWlcncGCF/3F2xWIDbk2Sp3+lTtPq2IBbk6Tzj4rLQz0uxfBNCw++bxVz/qtH81acq9GZAwfcq3ya55Wq1Kg6POC2pDH9/DzM/XF3cMBtSdNXDXQw7Y4NuC1p9Ix0PsRFBBb5Z9kCgS3+aRiWZRim0MAifzOzfc1wIYFF/s2KtakODyzyz8/nHB5o/WOrzOcfWZLsY3Cgt77+bzHzqmR4AQY2+EfziQU24NYk6fyDOPaVH8fDuAIecGuSmPPv39uv968zhw545P6BYf9PzffuoAGn4l/p/Wt1VfW4Ozjg1iTp/S++DieLdnDArUnS+3/0R/P6sUCwef8Xvr9AYJH/47FAoH9ulan/e9m+J3cPGrRw3+XQTM9TdZ7OcCGBRf76oNQBHtjjH+RpfP0AB1b4mwu2albrQQUOrPCfX7HYgNuSpi8Yq9nEAhtwW9K07aLL4aquh8tr7xIdcFvSmK5HNR3ZogNuSxrT9dRUnWzeg4O3rdL778/peT/uDg7WXNL/F8+//0500k8vkwWCzfu/qOsFAov8j/OtG0Rgi39dFGVZFDU0sMhf+222BwcW+S+1/8mtSTL3L2+3Eh7Y4x/7WocxOLDC/8vIEhr82ipP/+AeTKtjA+5VPk3X0/MKVXjea+8SHXBb0nRdu5nteGSLDrgtaUzXpe//uC1pTD9P3ebPrkIDbksa0y+rdTp9dhMbcFvSmH5RfwyAA25LGr0K3JY04u+2/+9V4F7mkux4bjs2g/i7jfi7jfi7jfi7zY57A5oZ7uW3IAiCIAjC6nA/gMKM8+t/7gLMiL/biL/biL/biL/b7Lg/gIgZ7tsPQRAEQRCE1eH+AHJmnF//cxdgRvzdRvzdRvzdxnl/7n9AyAz38lsQBEEQBEFYlz/cCfoAM4YaAQAAAABJRU5ErkJggg=="
                       alt=""
                       className="flex-shrink-0 block w-5 h-auto"
                     />
-                    <span className="block ml-3 text-sm font-medium">CAD</span>
+                    <span className="block ml-3 text-sm font-medium">USD</span>
                     <span className="sr-only">, change currency</span>
-                  </a>
-                </div>
-
-                {/* Search */}
-                <div className="flex lg:ml-6">
-                  <a href="#" className="p-2 text-black hover:text-gray-900">
-                    <span className="sr-only">Search</span>
-                    <MagnifyingGlassIcon
-                      className="w-6 h-6"
-                      aria-hidden="true"
-                    />
                   </a>
                 </div>
 
