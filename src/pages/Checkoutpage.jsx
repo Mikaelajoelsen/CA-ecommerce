@@ -20,7 +20,7 @@ const CheckoutSuccessPage = () => {
         </p>
         <Link
           to="/productspage"
-          className="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600"
+          className="px-4 py-2 text-white bg-pink-400 rounded-md hover:bg-pink-200"
         >
           Back to Store
         </Link>

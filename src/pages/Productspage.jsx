@@ -4,6 +4,9 @@ import { IoMdSearch } from "react-icons/io";
 import { HiOutlineArrowCircleRight } from "react-icons/hi";
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 import Carousel from "../components/Carousel";
+import Blogsection from "../components/Blogsection";
+import Newsletter from "../components/Newsletter";
+import TopCard from "../components/TopCard";
 import { useCartStore } from "../hooks/useCartStore";
 
 const getRandomImage = async () => {
@@ -84,6 +87,7 @@ const ProductsPage = () => {
   return (
     <section className="bg-white">
       <Carousel />
+      <TopCard />
       <div className="flex justify-start mt-10 mb-4 ml-2">
         <input
           type="text"
@@ -119,8 +123,8 @@ const ProductsPage = () => {
               )}
             </div>
             <div className="px-6 py-4 text-black">
-              <Link className="item-link" text-xl to={`/product/${product.id}`}>
-                {product.title}
+              <Link className="item-link" to={`/product/${product.id}`}>
+                <h2 className="mb-2 text-xl font-bold">{product.title}</h2>
               </Link>
               <p className="text-base text-gray-700">{product.description}</p>
               <p className="text-base text-gray-700">Price: ${product.price}</p>
@@ -130,7 +134,7 @@ const ProductsPage = () => {
               <div className="w-full my-4 text-left">
                 <button
                   className="flex items-center justify-center w-full gap-2 px-4 py-3 font-bold text-white duration-150 ease-in-out bg-gray-900 border border-gray-500 rounded-md text-md shadow-slate-600 hover:bg-white hover:text-gray-900 lg:m-0 md:px-6"
-                  title="Confirm Order"
+                  title="Add to Cart"
                   onClick={() => addItemToCart(product)}
                 >
                   <span>Add to cart</span>
@@ -149,18 +153,20 @@ const ProductsPage = () => {
               onClick={() => paginate(currentPage - 1)}
               disabled={currentPage === 1}
             >
-              {<FaArrowAltCircleLeft />}
+              <FaArrowAltCircleLeft />
             </button>
             <button
               className="px-3 py-2 text-4xl font-thin text-black bg-inherit"
               onClick={() => paginate(currentPage + 1)}
               disabled={indexOfLastProduct >= filteredProducts.length}
             >
-              {<FaArrowAltCircleRight />}
+              <FaArrowAltCircleRight />
             </button>
           </div>
         )}
       </div>
+      <Blogsection />
+      <Newsletter />
     </section>
   );
 };

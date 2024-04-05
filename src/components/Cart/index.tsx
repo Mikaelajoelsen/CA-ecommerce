@@ -160,7 +160,7 @@ function Cart() {
                       <div className="mt-6">
                         <button
                           onClick={clearCart}
-                          className="flex items-center justify-center w-full px-6 py-3 text-base font-medium text-white bg-black border border-transparent rounded-md shadow-sm hover:bg-indigo-700"
+                          className="flex items-center justify-center w-full px-6 py-3 text-base font-medium text-white bg-black border border-transparent rounded-md shadow-sm hover:bg-pink-400"
                         >
                           Clear Cart
                         </button>
@@ -168,7 +168,7 @@ function Cart() {
                       <div className="mt-6">
                         <a
                           href="/checkoutpage"
-                          className="flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-black border border-transparent rounded-md shadow-sm hover:bg-indigo-700"
+                          className="flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-black border border-transparent rounded-md shadow-sm hover:bg-pink-400"
                         >
                           Checkout
                         </a>

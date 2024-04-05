@@ -14,10 +14,7 @@ const Footer = () => {
       <div className="container flex flex-wrap justify-around py-8 mx-auto">
         <div className="w-full mb-8 md:w-1/4">
           <h3 className="mb-4 text-lg font-bold">About Us</h3>
-          <p>
-            Welcome to this auction site where u can explore and purchase unique
-            items just for you
-          </p>
+          <p>Welcome to this shopping site!</p>
         </div>
         <div className="w-full mb-8 md:w-1/4">
           <h3 className="mb-4 text-lg font-bold">Contact Us</h3>
